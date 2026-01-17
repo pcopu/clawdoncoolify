@@ -58,7 +58,7 @@ If you omit `CLAWDBOT_AUTH_CHOICE`, the entrypoint will auto‑select the first 
 
 - `CLAWDBOT_GATEWAY_TOKEN` — provide your own token (otherwise auto‑generated)
 - `CLAWDBOT_GATEWAY_BIND` — default `lan`
-- `CLAWDBOT_GATEWAY_PORT` — default `18789`
+- `CLAWDBOT_GATEWAY_PORT` — default `18789` (if you override this, update `docker-compose.yaml` ports)
 - `CLAWDBOT_BRIDGE_PORT` — default `18790` (not exposed by default)
 - `CLAWDBOT_STATE_DIR` — default `/home/node/.clawdbot`
 - `CLAWDBOT_WORKSPACE_DIR` — default `/home/node/clawd`
