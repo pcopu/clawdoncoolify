@@ -4,10 +4,10 @@ This repo is a thin wrapper that **builds clawd.bot from source** and **auto‑r
 
 ## Quick start (Coolify)
 
-**Recommended (100% automated ports):** Use **Docker Compose** with the included `docker-compose.yml`.
+**Recommended (100% automated ports):** Use **Docker Compose** with the included `docker-compose.yaml`.
 
 1) Create a new **Docker Compose** app in Coolify and point it at this repo.
-2) Coolify will auto‑map ports **18789** and **18790** from `docker-compose.yml`.
+2) Coolify will auto‑map ports **18789** and **18790** from `docker-compose.yaml`.
 3) Add at least one model provider key (see below).
 4) Deploy.
 
