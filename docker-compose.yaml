@@ -37,7 +37,6 @@ services:
       CLAWDBOT_TOKEN: ${CLAWDBOT_TOKEN:-}
     ports:
       - "${CLAWDBOT_GATEWAY_PORT:-18789}:${CLAWDBOT_GATEWAY_PORT:-18789}"
-      - "${CLAWDBOT_BRIDGE_PORT:-18790}:${CLAWDBOT_BRIDGE_PORT:-18790}"
     volumes:
       - clawdbot_state:/home/node/.clawdbot
       - clawdbot_workspace:/home/node/clawd

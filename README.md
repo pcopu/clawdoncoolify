@@ -7,14 +7,14 @@ This repo is a thin wrapper that **builds clawd.bot from source** and **auto‑r
 **Recommended (100% automated ports):** Use **Docker Compose** with the included `docker-compose.yaml`.
 
 1) Create a new **Docker Compose** app in Coolify and point it at this repo.
-2) Coolify will auto‑map ports **18789** and **18790** from `docker-compose.yaml`.
+2) Coolify will auto‑map port **18789** from `docker-compose.yaml`.
 3) Add at least one model provider key (see below).
 4) Deploy.
 
 **Alternative:** Dockerfile app (manual port mapping).
 1) Create a new application in Coolify and point it at this repo.
 2) Build with the Dockerfile at repo root.
-3) Expose port **18789** (gateway) and optionally **18790** (bridge).
+3) Expose port **18789** (gateway). Add **18790** only if you explicitly need the bridge port.
 4) Add at least one model provider key (see below).
 5) Deploy.
 
@@ -59,7 +59,7 @@ If you omit `CLAWDBOT_AUTH_CHOICE`, the entrypoint will auto‑select the first 
 - `CLAWDBOT_GATEWAY_TOKEN` — provide your own token (otherwise auto‑generated)
 - `CLAWDBOT_GATEWAY_BIND` — default `lan`
 - `CLAWDBOT_GATEWAY_PORT` — default `18789`
-- `CLAWDBOT_BRIDGE_PORT` — default `18790`
+- `CLAWDBOT_BRIDGE_PORT` — default `18790` (not exposed by default)
 - `CLAWDBOT_STATE_DIR` — default `/home/node/.clawdbot`
 - `CLAWDBOT_WORKSPACE_DIR` — default `/home/node/clawd`
 - `CLAWDBOT_FORCE_ONBOARD=1` — rerun onboarding even if config exists

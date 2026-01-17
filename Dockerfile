@@ -52,7 +52,7 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 USER node
 WORKDIR /app
 
-EXPOSE 18789 18790
+EXPOSE 18789
 VOLUME ["/home/node/.clawdbot", "/home/node/clawd"]
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
