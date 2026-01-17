@@ -25,7 +25,9 @@ ENV PATH="/root/.bun/bin:${PATH}"
 RUN corepack enable
 
 WORKDIR /app
-RUN git clone --depth 1 --branch "$CLAWDBOT_REF" "$CLAWDBOT_REPO" .
+# Allow CLAWDBOT_REF to be a branch, tag, or commit SHA.
+RUN git clone --depth 1 "$CLAWDBOT_REPO" . \
+  && (git checkout "$CLAWDBOT_REF" || (git fetch --depth 1 origin "$CLAWDBOT_REF" && git checkout "$CLAWDBOT_REF"))
 
 RUN pnpm install --frozen-lockfile
 RUN pnpm build
