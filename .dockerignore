@@ -1,0 +1,13 @@
+.git
+.gitignore
+.clawdbot-src
+.DS_Store
+.env
+.env.*
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+data
+tmp
+README.md

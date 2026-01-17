@@ -1,0 +1,9 @@
+.clawdbot-src/
+.env
+.env.*
+!.env.example
+.DS_Store
+node_modules/
+data/
+tmp/
+*.log

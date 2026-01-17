@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>clawd.bot setup guide</title>
+    <style>
+      @import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&f[]=clash-display@600,700&display=swap");
+
+      :root {
+        --bg-deep: #050810;
+        --bg-surface: #0a0f1a;
+        --bg-elevated: #111827;
+        --text-primary: #f0f4ff;
+        --text-secondary: #8892b0;
+        --text-muted: #5a6480;
+        --cyan-bright: #00e5cc;
+        --cyan-mid: #14b8a6;
+        --cyan-glow: rgba(0, 229, 204, 0.4);
+        --coral-bright: #ff4d4d;
+        --coral-mid: #e63946;
+        --coral-dark: #991b1b;
+        --border-subtle: rgba(136, 146, 176, 0.15);
+        --border-accent: rgba(255, 77, 77, 0.3);
+        --font-display: "Clash Display", system-ui, sans-serif;
+        --font-body: "Satoshi", system-ui, sans-serif;
+        --shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        color: var(--text-primary);
+        background: radial-gradient(circle at 15% 20%, rgba(0, 229, 204, 0.2), transparent 45%),
+          radial-gradient(circle at 85% 0%, rgba(255, 77, 77, 0.18), transparent 40%),
+          var(--bg-deep);
+        min-height: 100vh;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 48px 24px 80px;
+        position: relative;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 32px;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(10, 15, 26, 0.8);
+        color: var(--text-primary);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: 1px solid var(--border-subtle);
+      }
+
+      h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 4vw, 3.6rem);
+        margin: 16px 0 12px;
+      }
+
+      p {
+        color: var(--text-secondary);
+        line-height: 1.65;
+        font-size: 1.05rem;
+      }
+
+      .notice {
+        background: rgba(255, 77, 77, 0.1);
+        border: 1px solid var(--border-accent);
+        padding: 12px 16px;
+        border-radius: 14px;
+        margin-top: 18px;
+        font-size: 0.95rem;
+        color: var(--text-primary);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
+
+      .step {
+        background: rgba(10, 15, 26, 0.8);
+        border-radius: 20px;
+        padding: 20px 22px;
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(18px);
+        animation: reveal 0.7s ease forwards;
+      }
+
+      .step:nth-child(1) { animation-delay: 0.1s; }
+      .step:nth-child(2) { animation-delay: 0.2s; }
+      .step:nth-child(3) { animation-delay: 0.3s; }
+      .step:nth-child(4) { animation-delay: 0.4s; }
+
+      .step h3 {
+        margin: 10px 0 8px;
+        font-size: 1.1rem;
+        color: var(--text-primary);
+      }
+
+      .step-number {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        color: #0a0f1a;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--cyan-bright), var(--cyan-mid));
+        box-shadow: 0 10px 18px rgba(0, 229, 204, 0.3);
+      }
+
+      .card-code {
+        background: #0b1220;
+        color: #e2e8f0;
+        padding: 14px 16px;
+        border-radius: 12px;
+        font-family: "SF Mono", "Fira Code", "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        overflow-x: auto;
+        border: 1px solid rgba(0, 229, 204, 0.2);
+      }
+
+      .pill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .pill {
+        background: rgba(17, 24, 39, 0.8);
+        color: var(--text-secondary);
+        border: 1px solid var(--border-subtle);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+      }
+
+      .cta {
+        margin-top: 26px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(135deg, var(--coral-bright), var(--cyan-bright));
+        color: #050810;
+        padding: 12px 18px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .footer {
+        margin-top: 40px;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+
+      .glow {
+        position: absolute;
+        top: 80px;
+        right: -120px;
+        width: 280px;
+        height: 280px;
+        background: radial-gradient(circle at 30% 30%, var(--cyan-glow), transparent 65%);
+        opacity: 0.6;
+        animation: float 10s ease-in-out infinite;
+      }
+
+      @keyframes reveal {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-18px); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .step { animation: none; opacity: 1; transform: none; }
+        .glow { animation: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="glow" aria-hidden="true"></div>
+      <section class="hero">
+        <div>
+          <span class="badge">coolify setup assistant</span>
+          <h1>clawd.bot is almost ready</h1>
+          <p>
+            This deployment is waiting on a model provider key. Add one in Coolify, redeploy,
+            and the Control UI will appear here automatically.
+          </p>
+          <div class="notice">
+            <strong>Missing:</strong> {{MISSING_REASON}} · <strong>Auth choice:</strong> {{AUTH_CHOICE}}
+          </div>
+        </div>
+        <div class="card-code">
+          <div># Example (Anthropic)</div>
+          <div>CLAWDBOT_AUTH_CHOICE=anthropic-api-key</div>
+          <div>ANTHROPIC_API_KEY=your_key_here</div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="step">
+          <div class="step-number">1</div>
+          <h3>Add provider env vars</h3>
+          <p>In Coolify → Environment Variables, add one provider pair.</p>
+          <div class="card-code">
+            CLAWDBOT_AUTH_CHOICE=openai-api-key
+            OPENAI_API_KEY=your_key
+          </div>
+          <div class="pill-list">
+            <span class="pill">Anthropic</span>
+            <span class="pill">OpenAI</span>
+            <span class="pill">OpenRouter</span>
+            <span class="pill">Gemini</span>
+            <span class="pill">Z.AI</span>
+            <span class="pill">Moonshot</span>
+            <span class="pill">MiniMax</span>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-number">2</div>
+          <h3>Persist state + workspace</h3>
+          <p>Create two volumes so your setup survives redeploys:</p>
+          <div class="card-code">
+            /home/node/.clawdbot
+            /home/node/clawd
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-number">3</div>
+          <h3>Deploy</h3>
+          <p>Redeploy the app. The container will auto‑onboard and start the gateway.</p>
+        </article>
+
+        <article class="step">
+          <div class="step-number">4</div>
+          <h3>Open the Control UI</h3>
+          <p>Check Coolify logs for the tokenized Control UI URL and open it.</p>
+        </article>
+      </section>
+
+      <a class="cta" href="https://docs.clawd.bot/start/getting-started" target="_blank" rel="noreferrer">
+        Open clawd.bot docs
+      </a>
+
+      <div class="footer">
+        Once a provider key is set, this guide is replaced by the Control UI.
+      </div>
+    </div>
+  </body>
+</html>
