@@ -1,0 +1,23 @@
+name: coolify-nightly-redeploy
+
+on:
+  schedule:
+    # Default: 04:00 UTC daily. Adjust as needed.
+    - cron: "0 4 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Coolify deployment
+        env:
+          COOLIFY_WEBHOOK_URL: ${{ secrets.COOLIFY_WEBHOOK_URL }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+        run: |
+          if [ -z "$COOLIFY_WEBHOOK_URL" ] || [ -z "$COOLIFY_TOKEN" ]; then
+            echo "Missing COOLIFY_WEBHOOK_URL or COOLIFY_TOKEN secrets" >&2
+            exit 1
+          fi
+          curl --fail --request GET "$COOLIFY_WEBHOOK_URL" \
+            --header "Authorization: Bearer $COOLIFY_TOKEN"

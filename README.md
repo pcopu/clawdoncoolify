@@ -87,6 +87,22 @@ You can pin the upstream clawd.bot version with build args:
 
 In Coolify, set these as **build args** if you want a fixed release.
 
+## Upgrades (recommended)
+
+Because this image **builds clawd.bot at build time**, upgrades happen on **rebuild/redeploy**.
+
+### Option A — Manual (simple)
+- Click **Redeploy** in Coolify whenever you want to pull latest `CLAWDBOT_REF`.
+
+### Option B — Nightly auto‑redeploy (100% automated)
+This repo includes a GitHub Actions workflow that pings the Coolify deploy webhook nightly.
+
+1) In Coolify, copy the **Deploy Webhook** URL for this app.
+2) In GitHub → **Settings → Secrets and variables → Actions**, add:
+   - `COOLIFY_WEBHOOK_URL` (the deploy webhook URL)
+   - `COOLIFY_TOKEN` (your Coolify API token)
+3) The workflow runs daily at **04:00 UTC**. Edit `.github/workflows/nightly-redeploy.yml` to change the time.
+
 ## Local run
 
 ```bash
