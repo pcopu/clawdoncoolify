@@ -10,7 +10,7 @@ services:
     environment:
       CLAWDBOT_AUTH_CHOICE: ${CLAWDBOT_AUTH_CHOICE:-}
       CLAWDBOT_GATEWAY_TOKEN: ${CLAWDBOT_GATEWAY_TOKEN:-}
-      CLAWDBOT_GATEWAY_BIND: ${CLAWDBOT_GATEWAY_BIND:-lan}
+      CLAWDBOT_GATEWAY_BIND: ${CLAWDBOT_GATEWAY_BIND:-0.0.0.0}
       CLAWDBOT_GATEWAY_PORT: ${CLAWDBOT_GATEWAY_PORT:-18789}
       CLAWDBOT_BRIDGE_PORT: ${CLAWDBOT_BRIDGE_PORT:-18790}
       CLAWDBOT_STATE_DIR: ${CLAWDBOT_STATE_DIR:-/home/node/.clawdbot}
@@ -22,23 +22,16 @@ services:
       CLAWDBOT_SKIP_UI: ${CLAWDBOT_SKIP_UI:-1}
       CLAWDBOT_SKIP_CHANNELS: ${CLAWDBOT_SKIP_CHANNELS:-1}
       CLAWDBOT_SKIP_SKILLS: ${CLAWDBOT_SKIP_SKILLS:-1}
-
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
       AI_GATEWAY_API_KEY: ${AI_GATEWAY_API_KEY:-}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
-      ZAI_API_KEY: ${ZAI_API_KEY:-}
-      MOONSHOT_API_KEY: ${MOONSHOT_API_KEY:-}
-      MINIMAX_API_KEY: ${MINIMAX_API_KEY:-}
-      SYNTHETIC_API_KEY: ${SYNTHETIC_API_KEY:-}
-      OPENCODE_API_KEY: ${OPENCODE_API_KEY:-}
-      CLAWDBOT_TOKEN_PROVIDER: ${CLAWDBOT_TOKEN_PROVIDER:-}
-      CLAWDBOT_TOKEN: ${CLAWDBOT_TOKEN:-}
-    ports:
-      - "18789:18789"
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+    # БЕЗ ports: — не пробрасываем наружу!
     expose:
       - "18789"
+    network_mode: host  # Для доступа через Tailscale
     volumes:
       - clawdbot_state:/home/node/.clawdbot
       - clawdbot_workspace:/home/node/clawd
