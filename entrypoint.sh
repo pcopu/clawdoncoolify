@@ -189,4 +189,4 @@ if [[ "${CLAWDBOT_PRINT_DASHBOARD_URL:-1}" != "0" ]]; then
   print_dashboard_url
 fi
 
-exec node dist/index.js gateway --bind "$CLAWDBOT_GATEWAY_BIND" --port "$CLAWDBOT_GATEWAY_PORT"
+exec node dist/index.js gateway --allow-unconfigured --bind "$CLAWDBOT_GATEWAY_BIND" --port "$CLAWDBOT_GATEWAY_PORT"
